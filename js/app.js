@@ -1,8 +1,16 @@
 document.addEventListener('DOMContentLoaded', function(){
+
+    const email = {
+        email: '',
+        asunto: '',
+        mensaje: ''
+    }
+
     const inputEmail = document.querySelector('#email');
     const inputAsunto = document.querySelector('#asunto');
     const inputMensaje = document.querySelector('#mensaje');
     const formulario = document.querySelector('#formulario');
+    const btnSubmit = document.querySelector ('#formulario button[type="submit"]');
 
     inputEmail.addEventListener('blur', validar);
 
@@ -13,9 +21,25 @@ document.addEventListener('DOMContentLoaded', function(){
     function validar(evt){
         if(evt.target.value.trim()=== ''){
             mostrarAlerta(`El campo ${evt.target.id} es obligatorio`, evt.target.parentElement);
+            email[evt.target.id]='';
+            comprobarEmail();
             return;
         }
+
+        if (evt.target.id === 'email' &&  !validarEmail(evt.target.value)){
+            mostrarAlerta('El email introducido no es correcto', evt.target.parentElement);
+            email[evt.target.id]='';
+
+            comprobarEmail();
+
+            return;
+        }
+
         limpiarAlerta(evt.target.parentElement);
+
+        email[evt.target.id] = evt.target.value.trim().toLowerCase();
+
+        comprobarEmail();
     }
 
     function mostrarAlerta(mensaje,referencia){
@@ -33,6 +57,23 @@ document.addEventListener('DOMContentLoaded', function(){
             alerta.remove();
         }
 
+    }
+
+    function validarEmail(email){
+        const regex =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+        const resultado = regex.test(email);
+        return resultado; 
+    }
+
+    function comprobarEmail(){
+        if(Object.values(email).includes('')){
+            btnSubmit.classList.add('opacity-50');
+            btnSubmit.disabled = true;
+            return;
+        }
+            btnSubmit.classList.remove('opacity-50');
+            btnSubmit.disabled = false;
+        
     }
 });
 
