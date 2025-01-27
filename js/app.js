@@ -12,17 +12,23 @@ document.addEventListener('DOMContentLoaded', function(){
 
     function validar(evt){
         if(evt.target.value.trim()=== ''){
-            mostrarAlerta(`El campo ${evt.target.id} es obligatorio`);
+            mostrarAlerta(`El campo ${evt.target.id} es obligatorio`, evt.target.parentElement);
         }else{
             console.log('Si hay algo');
         }
     }
 
-    function mostrarAlerta(mensaje){
+    function mostrarAlerta(mensaje,referencia){
+
+        const alerta = referencia.querySelector('.bg-red-600');
+        if(alerta){
+            alerta.remove();
+        }
+
         const error = document.createElement('P');
         error.textContent = mensaje;
         error.classList.add('bg-red-600', 'text-white', 'p-2', 'text-center');
-        formulario.appendChild(error);
+        referencia.appendChild(error);
     }
 });
 
