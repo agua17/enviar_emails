@@ -13,9 +13,9 @@ document.addEventListener('DOMContentLoaded', function(){
     function validar(evt){
         if(evt.target.value.trim()=== ''){
             mostrarAlerta(`El campo ${evt.target.id} es obligatorio`, evt.target.parentElement);
-        }else{
-            console.log('Si hay algo');
+            return;
         }
+        limpiarAlerta(evt.target.parentElement);
     }
 
     function mostrarAlerta(mensaje,referencia){
@@ -29,6 +29,14 @@ document.addEventListener('DOMContentLoaded', function(){
         error.textContent = mensaje;
         error.classList.add('bg-red-600', 'text-white', 'p-2', 'text-center');
         referencia.appendChild(error);
+    }
+
+    function limpiarAlerta(referencia){
+        const alerta = referencia.querySelector('.bg-red-600');
+        if(alerta){
+            alerta.remove();
+        }
+
     }
 });
 
