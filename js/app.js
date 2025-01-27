@@ -19,11 +19,7 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 
     function mostrarAlerta(mensaje,referencia){
-
-        const alerta = referencia.querySelector('.bg-red-600');
-        if(alerta){
-            alerta.remove();
-        }
+        limpiarAlerta(referencia);
 
         const error = document.createElement('P');
         error.textContent = mensaje;
