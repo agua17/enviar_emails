@@ -2,8 +2,15 @@ document.addEventListener('DOMContentLoaded', function(){
     const inputEmail = document.querySelector('#email');
     const inputAsunto = document.querySelector('#asunto');
     const inputMensaje = document.querySelector('#mensaje');
+
+    inputEmail.addEventListener('blur', validar);
+
+    inputAsunto.addEventListener('blur', validar);
+
+    inputMensaje.addEventListener('blur', validar)
+
+    function validar(evt){
+        console.log(evt.target.value);
+    }
 });
 
-inputEmail.addEventListener('blur', function(){
-    console.log('Se está ejecutando porque el usuario dejó de interactuar con el elemento');
-})
