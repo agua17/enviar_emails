@@ -19,6 +19,9 @@ document.addEventListener('DOMContentLoaded', function(){
     inputAsunto.addEventListener('blur', validar);
 
     inputMensaje.addEventListener('blur', validar);
+    formulario.addEventListener('submit', enviarEmail);
+
+
 
     btnReset.addEventListener('click', function(evt){
         evt.preventDefault();
@@ -33,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
     function validar(evt){
         if(evt.target.value.trim()=== ''){
-            mostrarAlerta(`El campo ${evt.target.id} es obligatorio`, evt.target.parentElement);
+            mostrarAlerta("El campo ${evt.target.id} es obligatorio, evt.target.parentElement");
             email[evt.target.id]='';
             comprobarEmail();
             return;
@@ -88,5 +91,21 @@ document.addEventListener('DOMContentLoaded', function(){
             btnSubmit.disabled = false;
         
     }
-});
 
+    function enviarEmail(evt){
+        evt.preventDefault();
+
+        spinner.classList.add('flex');
+        spinner.classList.remove('hidden');
+
+        setTimeout(() => {
+            
+        spinner.classList.add('flex');
+        spinner.classList.remove('hidden');
+            
+        }, 3000);
+        
+
+
+    }
+});
