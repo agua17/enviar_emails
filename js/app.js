@@ -11,12 +11,24 @@ document.addEventListener('DOMContentLoaded', function(){
     const inputMensaje = document.querySelector('#mensaje');
     const formulario = document.querySelector('#formulario');
     const btnSubmit = document.querySelector ('#formulario button[type="submit"]');
+    const btnReset = document.querySelector('#formulario button[type = "reset"]');
 
     inputEmail.addEventListener('blur', validar);
 
     inputAsunto.addEventListener('blur', validar);
 
     inputMensaje.addEventListener('blur', validar);
+
+    btnReset.addEventListener('click', function(evt){
+        evt.preventDefault();
+
+        email.email='',
+        email.asunto='',
+        email.mensaje= '',
+
+        formulario.reset();
+        comprobarEmail();
+    })
 
     function validar(evt){
         if(evt.target.value.trim()=== ''){
